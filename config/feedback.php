@@ -15,16 +15,12 @@ return [
     ],
 
     /**
-     * Types
+     * Enable Types
      *
-     * The feedback types. Leave empty to remove.
+     * Whether or not types are enabled.
      */
 
-    'types' => [
-        'idea' => 'Idea',
-        'feedback' => 'Feedback',
-        'bug' => 'Bug',
-    ],
+    'enable_types' => true,
 
     /**
      * Screenshots

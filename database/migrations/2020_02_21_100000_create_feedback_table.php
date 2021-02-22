@@ -17,7 +17,7 @@ class CreateFeedbackTable extends Migration
             $table->id();
             $table->string('type')->nullable();
             $table->string('text');
-            $table->text('screenshot')->nullable();
+            $table->longText('screenshot')->nullable();
             $table->timestamps();
         });
     }

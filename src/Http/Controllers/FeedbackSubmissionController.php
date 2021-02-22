@@ -12,11 +12,14 @@ class FeedbackSubmissionController extends Controller
     {
         $rules = [
             'text' => ['required', 'string', 'max:255'],
-            'screenshot' => ['nullable', 'string'],
         ];
 
-        if ($types = array_keys(config('feedback.types'))) {
-            $rules['type'] = ['required', 'string', 'in:'.implode(',', $types)];
+        if (config('feedback.enable_types')) {
+            $rules['type'] = ['required', 'string', 'in:idea,feedback,bug'];
+        }
+
+        if (config('feedback.screenshots')) {
+            $rules['screenshot'] = ['nullable', 'string'];
         }
 
         Feedback::create($request->validate($rules));

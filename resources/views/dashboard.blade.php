@@ -40,21 +40,19 @@
             </div>
             <div class="mt-4 shadow-sm bg-white rounded-lg overflow-hidden">
                 <div class="px-4 sm:px-6 py-5">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Pages</h3>
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Feedback</h3>
                 </div>
                 <div class="px-4 sm:px-6 py-3 flex justify-between bg-gray-50 border-t border-b border-gray-200 text-xs font-medium leading-4 tracking-wider text-gray-600 uppercase">
-                    <div>Page</div>
-                    <div>Users</div>
+                    <div>Type</div>
+                    <div>Text</div>
+                    <div>Screenshot</div>
                 </div>
                 <div class="divide-y divide-gray-200 max-h-64 overflow-y-auto">
                     @foreach ($items as $item)
                         <div class="px-4 sm:px-6 py-3 flex justify-between hover:bg-gray-50">
-                            <div class="pr-5 text-sm leading-5 text-gray-800 truncate">
-                                <a href="{{ $item->id }}" target="_blank" class="hover:underline">
-                                    {{ $item->id }}
-                                </a>
-                            </div>
-                            <div class="text-sm leading-5 text-gray-600">{{ $item->id }}</div>
+                            <div class="text-sm leading-5 text-gray-800">{{ \Illuminate\Support\Str::ucfirst($item->type) }}</div>
+                            <div class="text-sm leading-5 text-gray-600 truncate">{{ $item->text }}</div>
+                            <img class="w-48 h-auto" src="{{ $item->screenshot }}" alt="Screenshot">
                         </div>
                     @endforeach
                 </div>
