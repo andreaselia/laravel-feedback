@@ -39,6 +39,7 @@ class FeedbackController extends Controller
     {
         return Feedback::query()
             ->scopes(['filter' => [$this->period]])
+            ->orderBy('id', 'desc')
             ->get();
     }
 }

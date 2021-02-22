@@ -2,6 +2,8 @@
 
 namespace AndreasElia\Feedback;
 
+use AndreasElia\Feedback\Facades\Feedback;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
@@ -35,6 +37,14 @@ class FeedbackServiceProvider extends ServiceProvider
 
         // Views
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'feedback');
+
+        // Blade Directives
+        Blade::directive('feedbackStyles', function ($expression) {
+            return '{!! \AndreasElia\Feedback\Feedback::styles('.$expression.') !!}';
+        });
+        Blade::directive('feedbackScripts', function ($expression) {
+            return '{!! \AndreasElia\Feedback\Feedback::scripts('.$expression.') !!}';
+        });
     }
 
     protected function routeConfig(): array
@@ -53,6 +63,12 @@ class FeedbackServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        // Facade
+        $this->app->bind('feedback', function ($app) {
+            return new Feedback();
+        });
+
+        // Config
         $this->mergeConfigFrom(
             __DIR__.'/../config/feedback.php', 'feedback'
         );
