@@ -20,7 +20,6 @@ class FeedbackController extends Controller
         return view('feedback::dashboard', [
             'period' => $this->period,
             'periods' => $this->periods(),
-            'stats' => $this->stats(),
             'items' => $this->items(),
         ]);
     }
@@ -33,22 +32,6 @@ class FeedbackController extends Controller
             '30_days' => 'Last 30 days',
             '6_months' => 'Last 6 months',
             '12_months' => 'Last 12 months',
-        ];
-    }
-
-    protected function stats(): array
-    {
-        return [
-            [
-                'key' => 'Items',
-                'value' => Feedback::query()
-                    ->scopes(['filter' => [$this->period]])
-                    ->count(),
-            ],
-            [
-                'key' => 'Total Items',
-                'value' => Feedback::count(),
-            ],
         ];
     }
 
