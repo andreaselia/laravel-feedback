@@ -13,6 +13,7 @@ createApp({
         text: '',
         screenshot: '',
       },
+      errors: '',
       showFeedback: false,
       submitted: false,
     }
@@ -35,14 +36,20 @@ createApp({
             </button>
           </div>
         </div>
-        <form class="flex flex-col space-y-5" @submit.prevent="submit" v-else>
-          <select v-model="form.type" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-            <option value="" disabled>Select Type</option>
-            <option value="idea">Idea</option>
-            <option value="feedback">Feedback</option>
-            <option value="bug">Bug</option>
-          </select>
-          <textarea v-model="form.text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" rows="3" placeholder="Enter some feedback..."></textarea>
+        <form @submit.prevent="submit" class="flex flex-col space-y-5" v-else>
+          <div>
+            <select v-model="form.type" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+              <option value="" disabled>Select Type</option>
+              <option value="idea">Idea</option>
+              <option value="feedback">Feedback</option>
+              <option value="bug">Bug</option>
+            </select>
+            <div class="mt-2 text-sm text-red-600" v-if="errors['type']">{{ errors['type'][0] }}</div>
+          </div>
+          <div>
+            <textarea v-model="form.text" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" rows="3" placeholder="Enter some feedback..."></textarea>
+            <div class="mt-2 text-sm text-red-600" v-if="errors['text']">{{ errors['text'][0] }}</div>
+          </div>
           <div class="flex flex-col space-y-5 sm:flex-row sm:space-x-2 sm:space-y-0">
             <button type="button" @click="takeScreenshot" class="flex-1 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" v-if="!form.screenshot">
               Take Screenshot
@@ -79,13 +86,19 @@ createApp({
     },
     submit() {
       axios.post('/feedback', this.form)
-        .then((response) => this.submitted = true)
-        .catch((error) => console.error(error))
+        .then((response) => {
+          this.submitted = true
+          this.errors = []
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors
+        })
     },
     reset() {
       this.form.type = ''
       this.form.text = ''
       this.form.screenshot = ''
+      this.errors = []
       this.showFeedback = false
       this.submitted = false
     }

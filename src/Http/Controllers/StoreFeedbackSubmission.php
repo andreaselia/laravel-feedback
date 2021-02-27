@@ -6,7 +6,7 @@ use Illuminate\Routing\Controller;
 use AndreasElia\Feedback\Models\Feedback;
 use AndreasElia\Feedback\Http\Requests\FeedbackRequest;
 
-class FeedbackSubmissionController extends Controller
+class StoreFeedbackSubmission extends Controller
 {
     public function __invoke(FeedbackRequest $request)
     {

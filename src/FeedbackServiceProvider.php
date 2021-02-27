@@ -64,7 +64,7 @@ class FeedbackServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Facade
-        $this->app->bind('feedback', function ($app) {
+        $this->app->singleton('feedback', function ($app) {
             return new Feedback();
         });
 

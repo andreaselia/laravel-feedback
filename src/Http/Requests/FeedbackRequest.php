@@ -25,7 +25,7 @@ class FeedbackRequest extends FormRequest
     {
         return [
             'type' => ['required', 'string', 'in:idea,feedback,bug'],
-            'text' => ['required', 'string', 'max:255'],
+            'text' => ['required', 'string'],
             'screenshot' => ['nullable', 'string'],
         ];
     }

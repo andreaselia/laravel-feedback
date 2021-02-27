@@ -41,25 +41,39 @@
                     <h3 class="text-lg font-medium leading-6 text-gray-900">Feedback</h3>
                 </div>
                 <div class="px-4 sm:px-6 py-3 bg-gray-50 border-t border-b border-gray-200 text-xs font-medium leading-4 tracking-wider text-gray-600 uppercase">
-                    <div class="grid grid-cols-12 gap-4">
-                        <div class="col-span-1">#</div>
+                    <div class="grid grid-cols-8 gap-8">
                         <div class="col-span-1">Type</div>
-                        <div class="col-span-5">Text</div>
+                        <div class="col-span-3">Text</div>
                         <div class="col-span-2">Screenshot</div>
                         <div class="col-span-2">When</div>
                     </div>
                 </div>
                 <div class="divide-y divide-gray-200 max-h-96 overflow-y-auto">
                     @foreach ($items as $item)
-                        <div class="grid grid-cols-12 gap-4 px-4 sm:px-6 py-3 hover:bg-gray-50">
-                            <div class="col-span-1 text-sm leading-5 text-gray-800">{{ $item->id }}</div>
-                            <div class="col-span-1 text-sm leading-5 text-gray-800">{{ \Illuminate\Support\Str::ucfirst($item->type) }}</div>
-                            <div class="col-span-5 text-sm leading-5 text-gray-600">{{ $item->text }}</div>
+                        <div class="grid grid-cols-8 gap-8 px-4 sm:px-6 py-3 hover:bg-gray-50">
+                            <div class="col-span-1 text-sm leading-5 text-gray-800">
+                                @if ($item->type === 'idea')
+                                    <span class="bg-yellow-50 rounded-md px-2 py-1 text-xs">
+                                        {{ \Illuminate\Support\Str::ucfirst($item->type) }}
+                                    </span>
+                                @elseif ($item->type === 'feedback')
+                                    <span class="bg-blue-50 rounded-md px-2 py-1 text-xs">
+                                        {{ \Illuminate\Support\Str::ucfirst($item->type) }}
+                                    </span>
+                                @elseif ($item->type === 'bug')
+                                    <span class="bg-red-50 rounded-md px-2 py-1 text-xs">
+                                        {{ \Illuminate\Support\Str::ucfirst($item->type) }}
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="col-span-3 text-sm leading-5 text-gray-600">{{ $item->text }}</div>
                             <div class="col-span-2">
                                 @if ($item->screenshot)
-                                    <a href="{{ $item->screenshot }}" download="screenshot.png">
+                                    <a href="{{ $item->screenshot }}" download="screenshot-{{ $item->type }}.png">
                                         <img class="w-48 h-auto" src="{{ $item->screenshot }}" alt="Screenshot">
                                     </a>
+                                @else
+                                    -
                                 @endif
                             </div>
                             <div class="col-span-2 text-sm leading-5 text-gray-800">{{ $item->created_at->diffForHumans() }}</div>

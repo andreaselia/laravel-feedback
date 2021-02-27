@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Collection;
 use AndreasElia\Feedback\Models\Feedback;
 
-class FeedbackController extends Controller
+class ShowFeedbackDashboard extends Controller
 {
     /** @var string */
     protected $period;
