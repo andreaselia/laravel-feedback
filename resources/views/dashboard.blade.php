@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/feedback/css/app.css') }}">
 
     <!-- Scripts -->
+    <script src="{{ asset('vendor/feedback/js/235.js') }}" defer></script>
     <script src="{{ asset('vendor/feedback/js/app.js') }}" defer></script>
 </head>
 <body>

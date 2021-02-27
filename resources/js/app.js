@@ -1,5 +1,4 @@
 import axios from 'axios'
-import html2canvas from 'html2canvas'
 import { createApp } from 'vue'
 
 const feedbackElement = document.createElement('div')
@@ -64,10 +63,16 @@ createApp({
     </div>
   `,
   methods: {
-    takeScreenshot() {
-      html2canvas(document.querySelector('body')).then(canvas => {
-        this.form.screenshot = canvas.toDataURL()
-      })
+    async takeScreenshot() {
+      try {
+        const screen = await (await import('@gripeless/pico')).dataURL(window, {
+          ignore: ['#feedback'],
+        })
+
+        this.form.screenshot = screen.value
+      } catch (err) {
+        console.error(err)
+      }
     },
     removeScreenshot() {
       this.form.screenshot = ''
@@ -78,6 +83,9 @@ createApp({
         .catch((error) => console.error(error))
     },
     reset() {
+      this.form.type = ''
+      this.form.text = ''
+      this.form.screenshot = ''
       this.showFeedback = false
       this.submitted = false
     }
