@@ -14,6 +14,7 @@ class FeedbackTest extends TestCase
     function feedback_can_be_submitted()
     {
         $testData = [
+            'type' => 'feedback',
             'text' => 'This is a feedback test',
         ];
 
