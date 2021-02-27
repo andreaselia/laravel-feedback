@@ -8,13 +8,6 @@
 
     @feedbackStyles
     @feedbackScripts
-
-    <!-- Styles -->
-    {{-- <link rel="stylesheet" href="{{ asset('vendor/feedback/css/app.css') }}"> --}}
-
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('vendor/feedback/js/235.js') }}" defer></script> --}}
-    {{-- <script src="{{ asset('vendor/feedback/js/app.js') }}" defer></script> --}}
 </head>
 <body>
     <div class="min-h-screen bg-gray-100 text-gray-500 py-6 flex flex-col sm:py-16">
