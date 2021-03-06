@@ -1,6 +1,6 @@
 # Laravel Feedback
 
-[![Latest Stable Version](https://poser.pugx.org/andreaselia/feedback/v)](//packagist.org/packages/andreaselia/feedback)
+[![Latest Stable Version](https://poser.pugx.org/andreaselia/laravel-feedback/v)](//packagist.org/packages/andreaselia/laravel-feedback)
 
 Easily collect page view feedback with a beautifully simple to use dashboard.
 
@@ -26,23 +26,11 @@ Don't forget to run the migrations:
 php artisan migrate
 ```
 
-You can add the page view middleware to a specific route group, e.g. `web.php` like so:
+Add the following blade directives to the `<head>` section of the template you'd like the feedback widget to show up on:
 
 ```php
-Route::middleware('feedback')->group(function () {
-    // ...
-});
-```
-
-Or add the page view to all middlewares/on an application level like so:
-
-```php
-// app/Http/Kernel.php
-
-protected $middleware = [
-    // ...
-    \AndreasElia\Feedback\Http\Middleware\Feedback::class,
-];
+@feedbackStyles
+@feedbackScripts
 ```
 
 ## Contributing
