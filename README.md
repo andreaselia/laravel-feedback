@@ -26,6 +26,12 @@ Don't forget to run the migrations:
 php artisan migrate
 ```
 
+Publish the public assets:
+
+```bash
+php artisan vendor:publish --tag=feedback-assets
+```
+
 Add the following blade directives to the `<head>` section of the template you'd like the feedback widget to show up on:
 
 ```php
