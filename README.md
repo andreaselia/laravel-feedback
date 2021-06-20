@@ -1,4 +1,4 @@
-# Laravel Feedback
+# Laravel Feedback (WORK IN PROGRESS, NOT INSTALLABLE)
 
 [![Latest Stable Version](https://poser.pugx.org/andreaselia/laravel-feedback/v)](//packagist.org/packages/andreaselia/laravel-feedback)
 
