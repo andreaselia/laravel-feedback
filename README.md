@@ -1,6 +1,6 @@
 # Laravel Feedback
 
-[![Latest Stable Version](https://poser.pugx.org/andreaselia/laravel-feedback/v)](//packagist.org/packages/andreaselia/laravel-feedback)
+[![Latest Stable Version](https://poser.pugx.org/andreaselia/feedback/v)](//packagist.org/packages/andreaselia/feedback)
 
 Easily collect page view feedback with a beautifully simple to use dashboard.
 
