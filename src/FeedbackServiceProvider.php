@@ -42,9 +42,7 @@ class FeedbackServiceProvider extends ServiceProvider
             return '<link href="'.asset('vendor/feedback/css/app.css').'" rel="stylesheet">';
         });
         Blade::directive('feedbackScripts', function ($expression) {
-            $scripts = '<script src="'.asset('vendor/feedback/js/app.js').'" defer></script>';
-            $scripts .= '<script src="'.asset('vendor/feedback/js/235.js').'" defer></script>';
-            return $scripts;
+            return  '<script src="'.asset('vendor/feedback/js/app.js').'" defer></script>';
         });
     }
 
