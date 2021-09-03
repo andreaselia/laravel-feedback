@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { createApp } from 'vue'
+import * as Pico from '@gripeless/pico'
 
 const feedbackElement = document.createElement('div')
 feedbackElement.id = 'feedback'
@@ -72,7 +73,7 @@ createApp({
   methods: {
     async takeScreenshot() {
       try {
-        const screen = await (await import('@gripeless/pico')).dataURL(window, {
+        const screen = await Pico.dataURL(window, {
           ignore: ['#feedback'],
         })
 
